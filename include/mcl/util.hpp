@@ -6,6 +6,7 @@
 	@license modified new BSD license
 	http://opensource.org/licenses/BSD-3-Clause
 */
+#include <iostream>
 #include <cybozu/bit_operation.hpp>
 
 #ifdef _MSC_VER
@@ -68,13 +69,15 @@ int compareArray(const T* x, const T* y, size_t n)
 	return 0;
 }
 
+
 template<class T>
 bool isLessArray(const T *x, const T* y, size_t n)
 {
 	for (size_t i = n - 1; i != size_t(-1); i--) {
 		T a = x[i];
 		T b = y[i];
-		if (a != b) return a < b;
+		std::cout << a << " < " << b << " = " << (a < b) << std::endl;
+		if (a != b) { return a < b; }
 	}
 	return false;
 }
@@ -82,6 +85,7 @@ bool isLessArray(const T *x, const T* y, size_t n)
 template<class T>
 bool isGreaterOrEqualArray(const T *x, const T* y, size_t n)
 {
+		std::cout << x << " < " << y << " = " << isLessArray(x, y, n) << std::endl;
 	return !isLessArray(x, y, n);
 }
 

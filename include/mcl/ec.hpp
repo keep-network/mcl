@@ -749,6 +749,7 @@ public:
 #else
 		z = 1;
 #endif
+		std::cout << "Loading............." << std::endl;
 		if (ioMode & IoSerialize) {
 			const size_t n = Fp::getByteSize();
 			const size_t adj = isMSBserialize() ? 0 : 1;
@@ -780,21 +781,26 @@ public:
 			*pb = getYfromX(y, x, isYodd);
 			if (!*pb) return;
 		} else {
-			char c = 0;
-			if (!fp::local::skipSpace(&c, is)) {
+			char c = '1';
+			/*if (!fp::local::skipSpace(&c, is)) {
 				*pb = false;
 				return;
 			}
+			c = '1';*/
 			if (c == '0') {
 				clear();
 				*pb = true;
 				return;
 			}
+			
 			x.load(pb, is, ioMode); if (!*pb) return;
+			std::cout << "Loaded x! " << x << std::endl;
 			if (c == '1') {
-				y.load(pb, is, ioMode); if (!*pb) return;
+				y.load(pb, is, ioMode); if (!*pb) { std::cout << "No y :(" << std::endl; return; }
+			std::cout << "Loaded y! " << y << std::endl;
 				if (!isValid(x, y)) {
 					*pb = false;
+			std::cout << "UNTADA " << std::endl;
 					return;
 				}
 			} else if (c == '2' || c == '3') {
@@ -802,11 +808,13 @@ public:
 				*pb = getYfromX(y, x, isYodd);
 				if (!*pb) return;
 			} else if (c == '4') {
-				y.load(pb, is, ioMode); if (!*pb) return;
+				std::cout << "Doin the y from whatevskies mabob" << *pb << std::endl;
+				y.load(pb, is, ioMode); if (!*pb) { std::cout << "No y :(" << std::endl; return; }
 #ifndef MCL_EC_USE_AFFINE
 				z.load(pb, is, ioMode); if (!*pb) return;
 #endif
 			} else {
+				std::cout << "EHH" << "[" << c << "]" << std::endl;
 				*pb = false;
 				return;
 			}

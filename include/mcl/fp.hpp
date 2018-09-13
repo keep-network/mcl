@@ -31,6 +31,8 @@
 #include <mcl/operator.hpp>
 #include <mcl/conversion.hpp>
 
+#include <iostream>
+
 namespace mcl {
 
 struct FpTag;
@@ -261,6 +263,7 @@ public:
 		if (!(ioMode & IoArrayRaw)) {
 			toMont();
 		}
+		std::cout << "alldoon!" << std::endl;
 		*pb = true;
 	}
 	template<class OutputStream>

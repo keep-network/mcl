@@ -194,7 +194,8 @@ int mclBnG1_setStr(mclBnG1 *x, const char *buf, mclSize bufSize, int ioMode)
 }
 mclSize mclBnG1_deserialize(mclBnG1 *x, const void *buf, mclSize bufSize)
 {
-	return (mclSize)cast(x)->deserialize(buf, bufSize);
+	printf("Ohai!\n");
+	return (mclSize)cast(x)->deserialize(buf, bufSize, mcl::IoArrayRaw);
 }
 
 // return 1 if true
@@ -228,7 +229,8 @@ mclSize mclBnG1_getStr(char *buf, mclSize maxBufSize, const mclBnG1 *x, int ioMo
 
 mclSize mclBnG1_serialize(void *buf, mclSize maxBufSize, const mclBnG1 *x)
 {
-	return (mclSize)cast(x)->serialize(buf, maxBufSize);
+	printf("Obai!\n");
+	return (mclSize)cast(x)->serialize(buf, maxBufSize, mcl::IoArrayRaw);
 }
 
 void mclBnG1_neg(mclBnG1 *y, const mclBnG1 *x)
@@ -273,7 +275,7 @@ int mclBnG2_setStr(mclBnG2 *x, const char *buf, mclSize bufSize, int ioMode)
 }
 mclSize mclBnG2_deserialize(mclBnG2 *x, const void *buf, mclSize bufSize)
 {
-	return (mclSize)cast(x)->deserialize(buf, bufSize);
+	return (mclSize)cast(x)->deserialize(buf, bufSize, mcl::IoArrayRaw);
 }
 
 // return 1 if true
@@ -307,7 +309,7 @@ mclSize mclBnG2_getStr(char *buf, mclSize maxBufSize, const mclBnG2 *x, int ioMo
 
 mclSize mclBnG2_serialize(void *buf, mclSize maxBufSize, const mclBnG2 *x)
 {
-	return (mclSize)cast(x)->serialize(buf, maxBufSize);
+	return (mclSize)cast(x)->serialize(buf, maxBufSize, mcl::IoArrayRaw);
 }
 
 void mclBnG2_neg(mclBnG2 *y, const mclBnG2 *x)

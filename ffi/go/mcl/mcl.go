@@ -22,6 +22,8 @@ const CurveFp382_1 = C.mclBn_CurveFp382_1
 // CurveFp382_2 -- 382 bit curve 2
 const CurveFp382_2 = C.mclBn_CurveFp382_2
 
+const CurveSNARK1 = C.mclBn_CurveSNARK1
+
 // BLS12_381
 const BLS12_381 = C.MCL_BLS12_381
 
@@ -236,6 +238,7 @@ func (x *G1) SetString(s string, base int) error {
 
 // Deserialize --
 func (x *G1) Deserialize(buf []byte) error {
+	fmt.Print("Booyan!")
 	// #nosec
 	err := C.mclBnG1_deserialize(x.getPointer(), unsafe.Pointer(&buf[0]), C.size_t(len(buf)))
 	if err == 0 {
